@@ -1,4 +1,5 @@
 const Hospital = require("../models/Hospital");
+const User = require("../models/User");
 //@desc Get all hospitals
 //@route GET /api/v1/hospitals
 //@access Public
@@ -75,3 +76,4 @@ exports.deleteHospital = async (req, res, next) => {
     res.status(400).json({ success: false });
   }
 };
+
