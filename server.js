@@ -14,10 +14,12 @@ const app = express();
 
 const hospitals = require("./routes/hospitals");
 const auth = require("./routes/auth");
+const appointments = require("./routes/appointments");
 //add body parser
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api/v1/hospitals", hospitals);
+app.use("/api/v1/appointments", appointments);
 app.use("/api/v1/auth", auth);
 
 const PORT = process.env.process || 5000;
