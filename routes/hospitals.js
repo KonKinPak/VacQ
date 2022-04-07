@@ -1,3 +1,16 @@
+const express = require("express");
+const {
+  getHospitals,
+  getHospital,
+  createHospital,
+  updateHospital,
+  deleteHospital,
+  getVacCenters,
+} = require("../controllers/hospitals");
+const appointmentRouter = require("./appointments");
+const router = express.Router();
+const app = express();
+
 /**
  * @swagger
  * components:
@@ -60,7 +73,7 @@
  *  get:
  *    summary: Returns the list of all the hospitals
  *    tags: [Hospitals]
- *    response:
+ *    responses:
  *      200:
  *        description: The list of the hospitals
  *        content:
@@ -83,7 +96,7 @@
  *          type: string
  *        required: true
  *        description: The hospital id
- *    response:
+ *    responses:
  *      200:
  *        description: The hospital description by id
  *        content:
@@ -105,7 +118,7 @@
  *        application/json:
  *          schema:
  *            $ref: '#components/schemas/Hospital'
- *    response:
+ *    responses:
  *      201:
  *        description: The hospital was successfully created
  *        content:
@@ -134,7 +147,7 @@
  *        application/json:
  *          schema:
  *            $ref: '#components/schemas/Hospital'
- *    response:
+ *    responses:
  *      200:
  *        description: The hospital was updated
  *        content:
@@ -159,23 +172,12 @@
  *          type: string
  *        required: true
  *        description: The hospital id
- *    response:
+ *    responses:
  *      200:
  *        description: The hospital description by id
  *      404:
  *        description: The hospital was not found
  */
-const express = require("express");
-const {
-  getHospitals,
-  getHospital,
-  createHospital,
-  updateHospital,
-  deleteHospital,
-  getVacCenters,
-} = require("../controllers/hospitals");
-const appointmentRouter = require("./appointments");
-const router = express.Router();
 
 const { protect, authorize } = require("../middleware/auth");
 

@@ -18,6 +18,15 @@ dotenv.config({ path: "./config/config.env" });
 //Connect to database
 connectDB();
 
+const app = express();
+const hospitals = require("./routes/hospitals");
+const auth = require("./routes/auth");
+const appointments = require("./routes/appointments");
+const limiter = rateLimit({
+  windowsMs: 10 * 60 * 1000,
+  max: 100,
+});
+
 const swaggerOptions = {
   swaggerDefinition: {
     openapi: "3.0.0",
@@ -28,24 +37,15 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: "http://localhost:5000/api/v1",
+        url: "http://localhost:5050/api/v1",
       },
     ],
   },
   apis: ["./routes/*.js"],
 };
-
-const app = express();
-
-const hospitals = require("./routes/hospitals");
-const auth = require("./routes/auth");
-const appointments = require("./routes/appointments");
-const limiter = rateLimit({
-  windowsMs: 10 * 60 * 1000,
-  max: 100,
-});
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 //add body parser
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 app.use(express.json());
 app.use(cookieParser());
 app.use(mongoSanitize());
@@ -57,9 +57,8 @@ app.use(cors());
 app.use("/api/v1/hospitals", hospitals);
 app.use("/api/v1/appointments", appointments);
 app.use("/api/v1/auth", auth);
-app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
-const PORT = process.env.process || 5000;
+const PORT = process.env.process || 5050;
 const server = app.listen(
   PORT,
   console.log("Server running in", process.env.NODE_ENV, " mode on port ", PORT)
