@@ -183,7 +183,7 @@ const { protect, authorize } = require("../middleware/auth");
 
 router.use("/:hospitalId/appointments/", appointmentRouter);
 
-router.route("/vacCenters").get(getVacCenters);
+// router.route("/vacCenters").get(getVacCenters);
 
 router
   .route("/")
