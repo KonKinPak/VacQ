@@ -58,7 +58,7 @@ app.use("/api/v1/hospitals", hospitals);
 app.use("/api/v1/appointments", appointments);
 app.use("/api/v1/auth", auth);
 
-const PORT = process.env.process || 9999;
+const PORT = process.env.process || 9213;
 const server = app.listen(
   PORT,
   console.log("Server running in", process.env.NODE_ENV, " mode on port ", PORT)
