@@ -1,10 +1,10 @@
-const mysql = require("mysql");
+// const mysql = require("mysql");
 
-var connection = mysql.createPool({
-  host: "localhost",
-  user: "root",
-  password: "tiewza567",
-  database: "vaccenter",
-});
+// var connection = mysql.createPool({
+//   host: "localhost",
+//   user: "root",
+//   password: "tiewza567",
+//   database: "vaccenter",
+// });
 
-module.exports = connection;
+// module.exports = connection;

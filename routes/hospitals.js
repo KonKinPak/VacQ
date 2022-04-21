@@ -5,7 +5,7 @@ const {
   createHospital,
   updateHospital,
   deleteHospital,
-  getVacCenters,
+  // getVacCenters,
 } = require("../controllers/hospitals");
 const appointmentRouter = require("./appointments");
 const router = express.Router();
